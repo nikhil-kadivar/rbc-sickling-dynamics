@@ -16,18 +16,13 @@ After creating python environment as suggested in installation step. You can use
 
 
 ### Step 1
-#### Single Video
 ```bash
 python extract_frames.py \
   --video /path/to/video.mp4 \
-  --out-base-dir ./runs \
-  --task-id 101 \
-  --task-name Experiment1 \
-  --prefix Flow \
-  --every-sec 10 \
-  --target-size 1080x1620 \
-  --workers 0Output and naming```
 ```
 ***Tip:*** `--workers 0` uses all CPU cores for faster saving.
 
 more info on extract_frames.py can be find here: [extract_frames.md](extract_frames.md)
+
+
+### Step 2
