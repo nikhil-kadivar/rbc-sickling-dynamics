@@ -70,9 +70,9 @@ from typing import Iterable, Optional, Tuple
 import cv2
 from PIL import Image
 
-import json  # NEW
-
 VIDEO_EXTS = {".mp4", ".avi", ".mov", ".mkv", ".mpg", ".m4v", ".wmv"}
+
+import json
 
 
 def slugify(name: str) -> str:
@@ -227,6 +227,30 @@ def process_video(
     return saved
 
 
+def probe_frame_size(video_path: Path) -> Optional[Tuple[int, int]]:
+    """Return (width, height) of the first frame in the given video, or None if unreadable."""
+    cap = cv2.VideoCapture(str(video_path))
+    if not cap.isOpened():
+        return None
+    ret, frame = cap.read()
+    cap.release()
+    if not ret or frame is None:
+        return None
+    h, w = frame.shape[:2]
+    return (w, h)
+
+
+
+def write_size_json(dst_dir: Path, size_wh: Tuple[int, int]) -> None:
+    """Write a single JSON file with the (width, height) that frames are saved at."""
+    w, h = size_wh
+    payload = {"width": int(w), "height": int(h)}
+    with open(dst_dir / "image_size.json", "w") as f:
+        json.dump(payload, f, indent=2)
+
+
+
+
 def main(argv: Optional[Iterable[str]] = None) -> int:
     ap = argparse.ArgumentParser(
         description="Extract frames from videos into nnU-Net imagesTs format.",
@@ -235,19 +259,19 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
 
     src = ap.add_mutually_exclusive_group(required=True)
     src.add_argument("--input-dir", type=Path, help="Directory containing video files")
-    src.add_argument("--video", type=Path, help="Path to a single video file")
+    src.add_argument("--video", type=Path, help="Path to a single video file, this is just to process single video. If you prefer lots of videos to be processed together. Please use the input-dir command")
 
-    ap.add_argument("--out-base-dir", type=Path, required=True, help="Base output directory")
-    ap.add_argument("--task-id", type=int, required=True, help="nnU-Net Task ID (e.g., 101)")
-    ap.add_argument("--task-name", type=str, default="RBC", help="nnU-Net Task Name (e.g., RBC)")
-    ap.add_argument("--prefix", type=str, default="AA", help="Prefix for saved frames")
+    ap.add_argument("--out-base-dir", type=Path, default="Frames_for_inference", help="Base output directory where extracted and renamed frames will be saved")
+    ap.add_argument("--task-id", type=int, default="101", help="nnU-Net Task ID (e.g., 101)")
+    ap.add_argument("--task-name", type=str, default="Experiment1", help="nnU-Net Task Name (e.g., experiment1)")
+    ap.add_argument("--prefix", type=str, default="Flow", help="Prefix for saved frames")
 
     # Sampling policy (mutually exclusive)
     pol = ap.add_mutually_exclusive_group()
     pol.add_argument("--every-sec", type=float, help="Save one frame every N seconds")
     pol.add_argument("--every-n-frames", type=int, help="Save one frame every N frames")
     pol.add_argument("--all-frames", action="store_true", help="Save all frames")
-    ap.add_argument("--target-size", type=parse_size, default=None, help="Resize to WIDTHxHEIGHT (PIL expects width,height)")
+    ap.add_argument("--target-size", type=parse_size, default="1080x1620", help="Resize to WIDTHxHEIGHT (PIL expects width,height), The number 1080*1620 is default and we arrived at this since we trained our nnunet model on this width and height. We observed doing inference on the same size at which nnunet is trained gives better accuracy. We recommend using this width and height if you are planning to use the pre-trained nnunet weights from this github repo. If you plan to train from scratch on your own experiment videos or frames. Please adjust this accordingly according to the training dataset.")
     ap.add_argument("--workers", type=int, default=0, help="Number of processes for saving (0 = use all cores)")
 
     args = ap.parse_args(list(argv) if argv is not None else None)
@@ -259,6 +283,7 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
     task_folder = f"Task{args.task_id:03d}_{args.task_name}"
     imagesTs_dir = args.out_base_dir / task_folder / "imagesTs"
     imagesTs_dir.mkdir(parents=True, exist_ok=True)
+
 
     # Figure out which videos to process
     videos: Iterable[Path]
@@ -272,6 +297,30 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
         videos = list(scan_videos(args.input_dir))
         if not videos:
             ap.error(f"No video files found in {args.input_dir} (supported: {sorted(VIDEO_EXTS)})")
+
+
+    # Decide the output size (shared for all frames)
+    if args.target_size is not None:
+        save_size = args.target_size  # (W, H) from --target-size
+    else:
+        # Probe the first readable video for native size
+        save_size = None
+        for vp in videos:
+            sz = probe_frame_size(vp)
+            if sz is not None:
+                save_size = sz
+                break
+        if save_size is None:
+            ap.error("Could not determine frame size from any input video and no --target-size was provided.")
+
+    # Persist a single JSON with the size all frames will have
+    write_size_json(imagesTs_dir, save_size)
+
+
+
+
+
+
 
     # Summary
     print("\nConfiguration")

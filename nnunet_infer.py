@@ -108,7 +108,7 @@ def is_mps_available() -> bool:
 def build_predict_cmd(
     imagesTs: Path,
     out_dir: Path,
-    dataset_id: int,
+    nn_dataset_id: int,
     configuration: str,
     checkpoint: str,
     npp: int,
@@ -122,7 +122,7 @@ def build_predict_cmd(
         "nnUNetv2_predict",
         "-i", str(imagesTs),
         "-o", str(out_dir),
-        "-d", str(dataset_id),
+        "-d", str(nn_dataset_id),
         "-c", configuration,
         "-chk", checkpoint,
         "-npp", str(npp),
@@ -169,7 +169,7 @@ def set_cpu_thread_env(env: dict, threads: Optional[int]) -> None:
 def run_parts(
     imagesTs: Path,
     out_dir: Path,
-    dataset_id: int,
+    nn_dataset_id: int,
     configuration: str,
     checkpoint: str,
     npp: int,
@@ -185,7 +185,7 @@ def run_parts(
 
     for part_id in range(parts):
         cmd = build_predict_cmd(
-            imagesTs, out_dir, dataset_id, configuration, checkpoint,
+            imagesTs, out_dir, nn_dataset_id, configuration, checkpoint,
             npp, nps, parts, part_id, device, disable_progress_bar
         )
         env = os.environ.copy()
@@ -242,11 +242,11 @@ def main(argv: Optional[List[str]] = None) -> int:
         description="Orchestrate nnUNetv2_predict across parts on GPU(s)/CPU/MPS with smart defaults.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
-    ap.add_argument("--imagesTs", type=Path, required=True, help="Path to nnU-Net imagesTs directory")
-    ap.add_argument("--out-dir", type=Path, required=True, help="Output directory for predictions")
-    ap.add_argument("--dataset-id", type=int, required=True, help="nnU-Net dataset id (e.g., 102)")
-    ap.add_argument("--configuration", type=str, default="2d", help="nnU-Net configuration (e.g., 2d, 3d_lowres, 3d_fullres)")
-    ap.add_argument("--checkpoint", type=str, default="checkpoint_best.pth", help="Checkpoint name or path")
+    ap.add_argument("--imagesTs", type=Path, default = "Frames_for_inference/Task101_Experiment1/imagesTs/", help="Path to nnU-Net imagesTs directory")
+    ap.add_argument("--out-dir", type=Path, default = "nnunet_masks_out", help="Output directory for predictions")
+    ap.add_argument("--nn_dataset_id", type=int, default = 102, help="nnU-Net dataset id (e.g., 102). Dataset id entered for nnunet_training loop. For pre-trained weights provided in this repo, its 102! This id is different from the one entered in extract_frame.py!")
+    ap.add_argument("--configuration", type=str, default="2d")
+    ap.add_argument("--checkpoint", type=str, default="checkpoint_best.pth", help="Checkpoint name or path. This checkpoint is related to nnunet training.")
 
     ap.add_argument("--npp", type=int, default=3, help="nnU-Net: number of preprocessing workers (per process)")
     ap.add_argument("--nps", type=int, default=3, help="nnU-Net: number of segmentation/export workers (per process)")
@@ -295,7 +295,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     print("=============")
     print(f"imagesTs       : {args.imagesTs}")
     print(f"out-dir        : {args.out_dir}")
-    print(f"dataset-id     : {args.dataset_id}")
+    print(f"nn_dataset_id     : {args.nn_dataset_id}")
     print(f"configuration  : {args.configuration}")
     print(f"checkpoint     : {args.checkpoint}")
     print(f"npp / nps      : {args.npp} / {args.nps} (per process)")
@@ -310,7 +310,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     rc = run_parts(
         imagesTs=args.imagesTs,
         out_dir=args.out_dir,
-        dataset_id=args.dataset_id,
+        nn_dataset_id=args.nn_dataset_id,
         configuration=args.configuration,
         checkpoint=args.checkpoint,
         npp=args.npp,

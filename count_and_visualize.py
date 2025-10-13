@@ -28,7 +28,6 @@ python sicklecell_count_and_visualize.py --mask-folder /path/to/masks --image-fo
 python sicklecell_count_and_visualize.py --mask-folder /path/to/masks --image-folder /path/to/imagesTs --out-dir ./cell_count_outputs_ws --watershed --min-distance 22 --excel-out counts.xlsx --frame-zfill 4 --fps 6
 """
 from __future__ import annotations
-
 import argparse
 import os
 from pathlib import Path
@@ -36,37 +35,50 @@ import re
 import math
 import concurrent.futures as cf
 from typing import Optional, Tuple, Dict, Any, List
-
 import numpy as np
 import pandas as pd
 from PIL import Image
-
 import matplotlib
 matplotlib.use("Agg")  # headless (safe in subprocesses)
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
-
 from scipy import ndimage as ndi
 from scipy.ndimage import center_of_mass
-
 from skimage.morphology import remove_small_objects
 from skimage.feature import peak_local_max
 from skimage.segmentation import watershed as sk_watershed
-
 import cv2
+import json
+
+
 
 # ------------------------------------------------------------
 # Utilities
 # ------------------------------------------------------------
+def load_size_json(dst_dir: Path) -> Optional[Tuple[int, int]]:
+    """Load (width, height) from imagesTs/image_size.json if present."""
+    path = dst_dir / "image_size.json"
+    if not path.exists():
+        return None
+    try:
+        with open(path, "r") as f:
+            data = json.load(f)
+        w = int(data["width"])
+        h = int(data["height"])
+        return (w, h)
+    except Exception as e:
+        print(f"[WARN] Could not read {path.name}: {e}")
+        return None
+
 
 def parse_args() -> argparse.Namespace:
     ap = argparse.ArgumentParser(
         description="Count sickle/healthy cells per frame with optional watershed, save montages, table, and a video.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
-    ap.add_argument("--mask-folder", type=Path, required=True, help="Folder with mask PNGs (0=bg,1=healthy,2=sickle)")
-    ap.add_argument("--image-folder", type=Path, required=True, help="imagesTs folder with original frames")
-    ap.add_argument("--out-dir", type=Path, required=True, help="Output directory (figures, tables, video)")
+    ap.add_argument("--mask-folder", type=Path, default = "nnunet_masks_out", help="Folder with mask PNGs (0=bg,1=healthy,2=sickle)")
+    ap.add_argument("--image-folder", type=Path, default = "Frames_for_inference", help="imagesTs folder with original frames")
+    ap.add_argument("--out-dir", type=Path, default = "Outputs", help="Output directory (figures, tables, video)")
 
     ap.add_argument("--min-chunk-size", type=int, default=1000, help="Remove objects smaller than this area (px)")
     ap.add_argument("--workers", type=int, default=0, help="# processes (0 = use all cores)")
@@ -80,10 +92,7 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--csv-out", type=str, default="counts.csv", help="Filename for CSV summary (inside out-dir)")
     ap.add_argument("--excel-out", type=str, default="", help="Optional Excel filename (inside out-dir); if blank, skip")
     ap.add_argument("--video-out", type=str, default="montage.mp4", help="Filename for output video (inside out-dir)")
-    ap.add_argument("--display-size", type=parse_size, default=None, help="Resize image/masks/labels for visualization to WIDTHxHEIGHT (W×H). Masks/labels use nearest-neighbor to preserve classes.")
-
-
-
+    ap.add_argument("--display-size", type=parse_size, help="Resize image/masks/labels for visualization to WIDTHxHEIGHT (W×H). Masks/labels use nearest-neighbor to preserve classes.")
     return ap.parse_args()
 
 
@@ -419,6 +428,21 @@ def main() -> int:
     print(f"Video FPS      : {args.fps}")
     if args.display_size:
         print(f"Display size   : {args.display_size[0]}x{args.display_size[1]} (W×H)")
+    else:
+        print("Display size   : native (no resize)")
+
+    # Try to read the shared size if user didn't pass --display-size
+    if args.display_size:
+        w, h = args.display_size
+    else:
+        loaded = load_size_json(args.image_folder)
+        if loaded is not None:
+            w, h = loaded
+        else:
+            w = h = None
+
+    if w is not None:
+        print(f"Display size   : {w}x{h} (W×H)")
     else:
         print("Display size   : native (no resize)")
 
