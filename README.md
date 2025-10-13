@@ -30,4 +30,4 @@ python extract_frames.py \
 ```
 ***Tip:*** `--workers 0` uses all CPU cores for faster saving.
 
-more info on extract_frames.py can be find here: [README_extract_frames.md](README_extract_frames.md)
+more info on extract_frames.py can be find here: [extract_frames.md](extract_frames.md)
