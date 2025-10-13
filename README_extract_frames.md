@@ -22,19 +22,8 @@ python extract_frames.py \
   --every-sec 10 \
   --target-size 1080x1620 \
   --workers 0Output and naming```
-
-#### Folder of videos
-```bash
-python extract_frames.py \
-  --input-dir /path/to/videos_dir \
-  --out-base-dir ./runs \
-  --task-id 101 \
-  --task-name Experiment1 \
-  --prefix Flow \
-  --every-n-frames 30 \
-  --target-size 1080x1620 \
-  --workers 8
 ```
+
 ***Tip:*** `--workers 0` uses all CPU cores for faster saving.
 
 ### Command-line arguments
@@ -43,9 +32,6 @@ python extract_frames.py \
 
 - `--input-dir PATH` :
   Directory containing video files.
-
-- `--video PATH` :
-   Path to a single video file, this is just to process single video. If you prefer ots of videos to be processed together, please use the input -dir command.
 
 #### Output & naming
 
