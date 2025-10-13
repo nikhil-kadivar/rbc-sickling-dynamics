@@ -3,7 +3,7 @@
 Extract frames from **one video** or **a directory of videos** into **nnU-Net `imagesTs`** format. Choose a sampling policy (every _N_ seconds, every _N_ frames, or all frames), set a filename prefix, and optionally resize frames to your model’s training resolution.
 
 
-1) ** `extract_frames.py` ** → creates `Task{ID}_{NAME}/imagesTs/…`
+1) **`extract_frames.py`** → creates `Task{ID}_{NAME}/imagesTs/…`
 2) `nnunet_infer.py`→ runs `nnUNetv2_predict` on `imagesTs/`
 3) `sicklecell_count_and_visualize.py` → counts cells, makes plots & a montage video
 
