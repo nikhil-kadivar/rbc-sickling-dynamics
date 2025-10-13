@@ -20,9 +20,17 @@ After creating python environment as suggested in installation step. You can use
 python extract_frames.py \
   --video /path/to/video.mp4 \
 ```
-***Tip:*** `--workers 0` uses all CPU cores for faster saving.
-
 more info on extract_frames.py can be find here: [extract_frames.md](extract_frames.md)
 
 
 ### Step 2
+```bash
+python nnunet_infer.py
+```
+more info on extract_frames.py can be find here: [nnunet_infer.md](nnunet_infer.md)
+
+### Step 3
+```bash
+python count_and_visualize.py
+```
+more info on extract_frames.py can be find here: [count_and_visualize.md](count_and_visualize.md)
