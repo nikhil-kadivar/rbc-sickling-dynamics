@@ -1,5 +1,6 @@
 ## Installation
-Install [PyTorch](https://pytorch.org/) as described on their website (conda/pip).
+1) Install [PyTorch](https://pytorch.org/) as described on their website (conda/pip).
+2) 
 
 ## Usage
 
