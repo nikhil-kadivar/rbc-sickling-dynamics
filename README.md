@@ -1,6 +1,8 @@
 ## Installation
 1) Install [PyTorch](https://pytorch.org/) as described on their website (conda/pip).
-2) 
+2) Install the nnUNet by ```pip install nnunetv2```
+3) Download the checkpoint [Google Drive](https://drive.google.com/drive/folders/1FrAzmIM1O82hFJ3d8WIn1UDlTzXGhxW6)
+4) Set the environment paths.
 
 ## Usage
 
