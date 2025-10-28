@@ -6,7 +6,7 @@
 
 ## Usage
 
-In default mode. To simply run this tool, you need to run these three files as shown below.
+In default mode. To simply run this tool with the pretrained weights, you need to run these three files as shown below.
 
 1) `extract_frames.py` → creates `Task{ID}_{NAME}/imagesTs/…`
 2) **`nnunet_infer.py`** → runs `nnUNetv2_predict` on `imagesTs/`
