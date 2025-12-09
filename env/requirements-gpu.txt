@@ -1,0 +1,37 @@
+# Core numerical / imaging stack
+numpy
+scipy
+scikit-image
+scikit-learn
+pandas
+matplotlib
+pillow
+imageio
+tifffile
+openpyxl
+
+# nnU-Net v2 and ecosystem
+nnunetv2==2.4.2
+acvl-utils==0.2
+dynamic-network-architectures==0.3.1
+MedPy==0.5.1
+SimpleITK==2.3.1
+pydicom==2.4.4
+dicom2nifti==2.4.10
+python-gdcm==3.0.23
+connected-components-3d==3.13.0
+yacs==0.1.8
+
+# I/O and visualization utilities
+opencv-python==4.12.0.88
+pyvista==0.44.2
+scooby==0.10.0
+
+# Misc tools used in the pipeline
+graphviz==0.20.3
+hiddenlayer==0.2
+nibabel==5.2.1
+pyyaml==6.0.1
+tqdm==4.66.2
+gdown==5.2.0
+
