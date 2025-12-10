@@ -18,7 +18,7 @@ conda create -n sickleflow_cpu python=3.10 -y
 conda activate sickleflow_cpu
 ```
 
-### 2. Install all required packages (including PyTorch CPU and nnU-Net v2)
+### 2. Install all required packages
 
 ```bash
 pip install -r env/requirements-cpu.txt
