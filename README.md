@@ -25,7 +25,7 @@ pip install -r env/requirements-gpu.txt
 ### 3. Set the environment paths.
 ```bash
 # From the repository root
-bash scripts/set_paths.sh
+source scripts/set_paths.sh
 ```
 
 ### 4. Download pretrained model
