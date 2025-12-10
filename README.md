@@ -1,8 +1,78 @@
-## Installation
-1) Install [PyTorch](https://pytorch.org/) as described on their website (conda/pip).
-2) Install the nnUNet by ```pip install nnunetv2```
-3) Download the checkpoint [Google Drive](https://drive.google.com/drive/folders/1FrAzmIM1O82hFJ3d8WIn1UDlTzXGhxW6)
-4) Set the environment paths.
+# Installation 
+
+You can choose any of the options to run the pipleine, either with CPUs or CUDA-GPUs
+
+## CPU only
+### 0. Clone the repository
+
+```bash
+git clone https://github.com/nikhil-kadivar/Sickle_cell_counter.git
+cd Sickle_cell_counter
+```
+
+### 1. Create Conda environment
+
+```bash
+
+conda create -n sickleflow_cpu python=3.10 -y
+conda activate sickleflow_cpu
+```
+
+### 2. Install all required packages (including PyTorch CPU and nnU-Net v2)
+
+```bash
+pip install -r env/requirements-cpu.txt
+```
+
+### 3. Set the environment paths.
+```bash
+# From the repository root
+bash scripts/set_paths.sh
+```
+
+### 4. Download pretrained model
+```bash
+python scripts/download_checkpoint.py
+```
+
+You are now ready to run the full pipeline.
+
+## CUDA GPU only
+### 0. Clone the repository
+
+```bash
+git clone https://github.com/nikhil-kadivar/Sickle_cell_counter.git
+cd Sickle_cell_counter
+```
+
+### 1. Create Conda environment
+
+```bash
+
+conda create -n sickleflow_gpu python=3.10 -y
+conda activate sickleflow_gpu
+```
+
+### 2. Install all required packages (including PyTorch CPU and nnU-Net v2)
+
+```bash
+pip install -r env/requirements-gpu.txt
+```
+
+### 3. Set the environment paths.
+```bash
+# From the repository root
+bash scripts/set_paths.sh
+```
+
+### 4. Download pretrained model
+```bash
+python scripts/download_checkpoint.py
+```
+
+You are now ready to run the full pipeline.
+
+
 
 ## Usage
 
@@ -37,3 +107,7 @@ more info on extract_frames.py can be find here: [nnunet_infer.md](nnunet_infer.
 python count_and_visualize.py
 ```
 more info on extract_frames.py can be find here: [count_and_visualize.md](count_and_visualize.md)
+
+
+## Note
+If you have choose to retrain nnUNet on your custom data, then place the wieghts in the path "nnunet_data/nnUNet_results/". Thats it! You can continue using fully automated pipeline now as it is with the new weights!
