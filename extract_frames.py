@@ -258,9 +258,7 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
     )
 
     src = ap.add_mutually_exclusive_group(required=True)
-    src.add_argument("--input-dir", type=Path, help="Directory containing video files")
     src.add_argument("--video", type=Path, help="Path to a single video file, this is just to process single video. If you prefer lots of videos to be processed together. Please use the input-dir command")
-
     ap.add_argument("--out-base-dir", type=Path, default="Frames_for_inference", help="Base output directory where extracted and renamed frames will be saved")
     ap.add_argument("--task-id", type=int, default="101", help="nnU-Net Task ID (e.g., 101)")
     ap.add_argument("--task-name", type=str, default="Experiment1", help="nnU-Net Task Name (e.g., experiment1)")
@@ -315,11 +313,6 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
 
     # Persist a single JSON with the size all frames will have
     write_size_json(imagesTs_dir, save_size)
-
-
-
-
-
 
 
     # Summary

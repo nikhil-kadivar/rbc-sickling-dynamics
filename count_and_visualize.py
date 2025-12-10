@@ -77,7 +77,7 @@ def parse_args() -> argparse.Namespace:
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     ap.add_argument("--mask-folder", type=Path, default = "nnunet_masks_out", help="Folder with mask PNGs (0=bg,1=healthy,2=sickle)")
-    ap.add_argument("--image-folder", type=Path, default = "Frames_for_inference", help="imagesTs folder with original frames")
+    ap.add_argument("--image-folder", type=Path, default = "Frames_for_inference/Task101_Experiment1/imagesTs/", help="imagesTs folder with original frames")
     ap.add_argument("--out-dir", type=Path, default = "Outputs", help="Output directory (figures, tables, video)")
 
     ap.add_argument("--min-chunk-size", type=int, default=1000, help="Remove objects smaller than this area (px)")
@@ -314,6 +314,7 @@ def process_one(
 
     img_path = find_image_for_frame(image_folder, frame_num, zfill)
     if img_path is None:
+        print(f"Imageeeeeeeee folder {image_folder}")
         raise FileNotFoundError(f"No matching image found for frame {frame_num} in {image_folder}")
 
     # Load

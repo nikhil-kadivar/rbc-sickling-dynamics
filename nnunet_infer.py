@@ -244,7 +244,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     )
     ap.add_argument("--imagesTs", type=Path, default = "Frames_for_inference/Task101_Experiment1/imagesTs/", help="Path to nnU-Net imagesTs directory")
     ap.add_argument("--out-dir", type=Path, default = "nnunet_masks_out", help="Output directory for predictions")
-    ap.add_argument("--nn_dataset_id", type=int, default = 102, help="nnU-Net dataset id (e.g., 102). Dataset id entered for nnunet_training loop. For pre-trained weights provided in this repo, its 102! This id is different from the one entered in extract_frame.py!")
+    ap.add_argument("--nn_dataset_id", type=int, default = 101, help="nnU-Net dataset id (e.g., 101). Dataset id entered for nnunet_training loop. For pre-trained weights provided in this repo, its 101! This id is different from the one entered in extract_frame.py!")
     ap.add_argument("--configuration", type=str, default="2d")
     ap.add_argument("--checkpoint", type=str, default="checkpoint_best.pth", help="Checkpoint name or path. This checkpoint is related to nnunet training.")
 
