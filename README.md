@@ -35,7 +35,7 @@ bash scripts/set_paths.sh
 python scripts/download_checkpoint.py
 ```
 
-You are now ready to run the full pipeline.
+You are now ready to run the full pipeline. Go to [Usage]
 
 ## CUDA GPU only
 ### 0. Clone the repository
