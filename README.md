@@ -1,42 +1,5 @@
 # Installation 
 
-You can choose any of the options to run the pipleine, either with CPUs or CUDA-GPUs
-
-## CPU only
-### 0. Clone the repository
-
-```bash
-git clone https://github.com/nikhil-kadivar/Sickle_cell_counter.git
-cd Sickle_cell_counter
-```
-
-### 1. Create Conda environment
-
-```bash
-
-conda create -n sickleflow_cpu python=3.10 -y
-conda activate sickleflow_cpu
-```
-
-### 2. Install all required packages
-
-```bash
-pip install -r env/requirements-cpu.txt
-```
-
-### 3. Set the environment paths.
-```bash
-# From the repository root
-bash scripts/set_paths.sh
-```
-
-### 4. Download pretrained model
-```bash
-python scripts/download_checkpoint.py
-```
-
-You are now ready to run the full pipeline. Go to "Usage" section.
-
 ## CUDA GPU only
 ### 0. Clone the repository
 
