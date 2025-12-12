@@ -27,7 +27,7 @@ pip install "torch==2.2.2" --index-url https://download.pytorch.org/whl/cu121
 ### 3. Install all required packages (including PyTorch CPU and nnU-Net v2)
 
 ```bash
-pip install -r env/requirements-gpu.txt
+pip install -r requirements-gpu.txt
 ```
 
 ### 4. Set the environment paths.
