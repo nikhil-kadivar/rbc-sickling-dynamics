@@ -16,19 +16,24 @@ conda create -n sickleflow_gpu python=3.10 -y
 conda activate sickleflow_gpu
 ```
 
-### 2. Install all required packages (including PyTorch CPU and nnU-Net v2)
+### 2. Install Pytorch
+```bash
+pip install "torch==2.2.2" --index-url https://download.pytorch.org/whl/cu121
+```
+
+### 3. Install all required packages (including PyTorch CPU and nnU-Net v2)
 
 ```bash
 pip install -r env/requirements-gpu.txt
 ```
 
-### 3. Set the environment paths.
+### 4. Set the environment paths.
 ```bash
 # From the repository root
 source scripts/set_paths.sh
 ```
 
-### 4. Download pretrained model
+### 5. Download pretrained model
 ```bash
 python scripts/download_checkpoint.py
 ```
