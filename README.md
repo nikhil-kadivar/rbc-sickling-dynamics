@@ -58,8 +58,7 @@ After creating python environment as suggested in installation step. You can use
 
 ### Step 1
 ```bash
-python extract_frames.py \
-  --video /path/to/video.mp4 \
+python extract_frames.py --video /path/to/video.mp4
 ```
 more info on extract_frames.py can be find here: [extract_frames.md](extract_frames.md)
 
