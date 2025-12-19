@@ -57,9 +57,6 @@ Number of processes used for parallel counting and plotting (0 = use all cores).
 - ```--watershed``` (flag)
 Enable watershed splitting to separate touching cells before counting.
 
-- ```--min-distance``` INT (default: 22)
-Peak spacing in pixels for watershed seed detection (skimage.peak_local_max).
-
 - ```--fps``` INT (default: 5)
 Frames-per-second for the stitched montage video.
 
@@ -71,10 +68,5 @@ Optional Excel filename (inside --out-dir). If empty, Excel is skipped.
 
 - ```--video-out``` STR (default: montage.mp4)
 Filename for the montage video (inside --out-dir).
-
-- ```--display-size``` WIDTHxHEIGHT (optional)
-Visualization-only resize for the montage frames (image + masks + labels).
-Use this to “un-stretch” visuals if frames were resized at extraction.
-Masks/labels use nearest-neighbor to preserve class integers.
 
 
