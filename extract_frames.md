@@ -1,6 +1,6 @@
 ## `extract_frames.py`
 
-Extract frames from **one video** or **a directory of videos** into **nnU-Net `imagesTs`** format. Choose a sampling policy (every _N_ seconds, every _N_ frames, or all frames), set a filename prefix, and optionally resize frames to your model’s training resolution.
+Extract frames from **one video** into **nnU-Net `imagesTs`** format. Choose a sampling policy (every _N_ seconds, every _N_ frames, or all frames), set a filename prefix, and optionally resize frames to your model’s training resolution.
 
 
 1) **`extract_frames.py`** → creates `Task{ID}_{NAME}/imagesTs/…`
@@ -27,11 +27,6 @@ python extract_frames.py \
 ***Tip:*** `--workers 0` uses all CPU cores for faster saving.
 
 ### Command-line arguments
-
-#### Source (mutually exclusive, one required)
-
-- `--input-dir PATH` :
-  Directory containing video files.
 
 #### Output & naming
 
@@ -60,7 +55,7 @@ Save all frames.
 
 ### Resize & performance
 
-- `--target-size WIDTHxHEIGHT` (default: `1080x1620`) : 
+- `--target-size WIDTHxHEIGHT` (default: `1000x1000`) : 
 Resize to `WIDTHxHEIGHT` (PIL expects width,height).
 The number `1080x1620` is default and we arrived at this since we trained our nnunet model on this width and height. We observed doing inference on the same size at which nnunet is trained gives better accuracy. We recommend using this width and height if you are planning to use the pre-trained nnunet weights from this github repo. If you plan to train from scratch on your own experiment videos or frames. Please adjust this accordingly according to the training dataset.
 
@@ -88,7 +83,7 @@ Frames are written to a nnU-Net test directory:
 - Pick a sampling policy that matches your study design.
 Timestamp-based (`--every-sec`) is robust with variable frame rates; frame-based (`--every-n-frames`) is fastest with constant FPS.
 
-- For pretrained weights here, `--target-size 1080x1620` is recommended.
+- For pretrained weights here, `--target-size 1000x1000` is recommended.
 
 - Provide exactly one source (`--video` or `--input-dir`) and one sampling option.
 
