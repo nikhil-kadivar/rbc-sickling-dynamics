@@ -57,7 +57,7 @@ Save all frames.
 
 - `--target-size WIDTHxHEIGHT` (default: `1000x1000`) : 
 Resize to `WIDTHxHEIGHT` (PIL expects width,height).
-The number `1080x1620` is default and we arrived at this since we trained our nnunet model on this width and height. We observed doing inference on the same size at which nnunet is trained gives better accuracy. We recommend using this width and height if you are planning to use the pre-trained nnunet weights from this github repo. If you plan to train from scratch on your own experiment videos or frames. Please adjust this accordingly according to the training dataset.
+The number `1000x1000` is default and we arrived at this since we trained our nnunet model on this width and height. We observed doing inference on the same size at which nnunet is trained gives better accuracy. We recommend using this width and height if you are planning to use the pre-trained nnunet weights from this github repo. If you plan to train from scratch on your own experiment videos or frames. Please adjust this accordingly according to the training dataset.
 
 - `--workers INT` (default: `0`) : 
 Number of processes for saving (`0` = use all cores).
