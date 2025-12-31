@@ -7,7 +7,7 @@ To install, just follow this command in your terminal.
 ### 0. Clone the repository
 
 ```bash
-git clone https://github.com/nikhil-kadivar/Sickle_cell_counter.git
+git clone https://github.com/nikhil-kadivar/SickleFlowNet.git
 cd Sickle_cell_counter
 ```
 
