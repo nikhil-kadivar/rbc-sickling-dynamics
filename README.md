@@ -8,7 +8,7 @@ To install, just follow this command in your terminal.
 
 ```bash
 git clone https://github.com/nikhil-kadivar/rbc-sickling-dynamics.git
-cd Sickle_cell_counter
+cd rbc-sickling-dynamics
 ```
 
 ### 1. Create Conda environment
