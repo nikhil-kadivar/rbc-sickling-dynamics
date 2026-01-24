@@ -57,20 +57,20 @@ After creating python environment as suggested in installation step, use command
 ```bash
 python extract_frames.py --video /path/to/video.mp4
 ```
-more info on extract_frames.py can be find here: [extract_frames.md](extract_frames.md)
+More info on extract_frames.py can be find here: [extract_frames.md](extract_frames.md)
 
 
 ### Step 2
 ```bash
 python nnunet_infer.py
 ```
-more info on extract_frames.py can be find here: [nnunet_infer.md](nnunet_infer.md)
+More info on extract_frames.py can be find here: [nnunet_infer.md](nnunet_infer.md)
 
 ### Step 3
 ```bash
 python count_and_visualize.py --watershed
 ```
-more info on extract_frames.py can be find here: [count_and_visualize.md](count_and_visualize.md)
+More info on extract_frames.py can be find here: [count_and_visualize.md](count_and_visualize.md)
 
 ### Note: 
 #### Set required paths (run once per fresh session)
@@ -83,4 +83,4 @@ source scripts/set_paths.sh
 ```
 
 #### Customize weights
-If you choose to retrain nnUNet on your own data, then place the weights in the path "nnunet_data/nnUNet_results/". Thats it! You can continue using fully automated pipeline now as it is with the new weights!
+If you choose to retrain nnU-Net on your own data, then place the weights in the path "nnunet_data/nnUNet_results/". You can continue using fully automated pipeline now as it is with the new weights!
