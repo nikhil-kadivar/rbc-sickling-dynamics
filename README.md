@@ -22,7 +22,7 @@ conda activate sickleflow_gpu
 pip install "torch==2.2.2" --index-url https://download.pytorch.org/whl/cu121
 ```
 
-### 3. Install all required packages (including PyTorch GPU)
+### 3. Install all required packages
 
 ```bash
 pip install -r requirements-gpu.txt
