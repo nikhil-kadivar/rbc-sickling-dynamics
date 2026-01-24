@@ -21,26 +21,12 @@ python extract_frames.py \
   --prefix Flow \
   --every-sec 10 \
   --target-size 1080x1620 \
-  --workers 0Output and naming```
+  --workers 0
 ```
 
 ***Tip:*** `--workers 0` uses all CPU cores for faster saving.
 
 ### Command-line arguments
-
-#### Output & naming
-
-- `--out-base-dir PATH` (default: `Frames_for_inference`) :
-Base output directory where extracted and renamed frames will be saved.
-
-- `--task-id INT` (default: `101`) :
-nnU-Net Task ID (e.g., 101).
-
-- `--task-name STR` (default: `Experiment1`) :
-nnU-Net Task Name (e.g., experiment1).
-
-- `--prefix STR` (default: `Flow`) : 
-Prefix for saved frames.
 
 ### Sampling policy (mutually exclusive, choose one)
 
@@ -84,7 +70,5 @@ Frames are written to a nnU-Net test directory:
 Timestamp-based (`--every-sec`) is robust with variable frame rates; frame-based (`--every-n-frames`) is fastest with constant FPS.
 
 - For pretrained weights here, `--target-size 1000x1000` is recommended.
-
-- Provide exactly one source (`--video` or `--input-dir`) and one sampling option.
 
 - Increasing `--workers` speeds up PNG writing on fast disks.
