@@ -1,7 +1,5 @@
 # Installation 
 
-## CUDA GPU
-
 To install, follow this command in your terminal.
 
 ### 0. Clone the repository
