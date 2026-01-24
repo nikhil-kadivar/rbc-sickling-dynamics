@@ -30,16 +30,7 @@ python nnunet_infer.py \
   --parts 3 \
   --npp 3 --nps 3
 ```
-#### CPU (or Apple Silicon mps)
-```bash
-python nnunet_infer.py \
-  --imagesTs Frames_for_inference/Task101_Experiment1/imagesTs/ \
-  --out-dir nnunet_masks_out \
-  --nn_dataset-id 102 \
-  --device cpu \
-  --cpu-workers 8 \
-  --torch-threads 1
-```
+
 
 There is option to check what commands are going to be executed with the flag ```-- dry run ```.
 
