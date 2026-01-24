@@ -71,11 +71,6 @@ Compute device for nnUNetv2_predict. Use cuda for NVIDIA GPUs, mps for Apple Sil
 - ```--gpus LIST``` (default: None)
 Comma-separated GPU IDs when using CUDA (e.g., 0,1,2). Ignored for cpu/mps.
 
-- ```--cpu-workers``` INT (default: 0)
-When --device cpu or mps and --parts 0 (auto), how many parallel processes to spawn. 0 = auto.
-
-- ```--torch-threads``` INT (default: 0)
-Sets CPU BLAS/OMP threads per process (torch.set_num_threads). 0 = leave as is.
 
 #### Logging / UX
 
