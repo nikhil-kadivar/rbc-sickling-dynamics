@@ -1,6 +1,6 @@
 # Environment setup
 
-To setup environment, follow this command in your terminal.
+To setup environment, run below listed commands in your terminal.
 
 ### 0. Clone the repository
 
