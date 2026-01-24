@@ -43,7 +43,7 @@ You are now ready to run the full pipeline.
 
 ## Usage
 
-To run this tool with the pretrained weights, simply run these three files as shown below.
+To run this tool with the pretrained weights, run these three files as shown below.
 
 1) `extract_frames.py` → creates `Task{ID}_{NAME}/imagesTs/…`
 2) **`nnunet_infer.py`** → runs `nnUNetv2_predict` on `imagesTs/`
@@ -51,26 +51,26 @@ To run this tool with the pretrained weights, simply run these three files as sh
 
 ---
 
-After creating python environment as suggested in installation step, use command line argument to run with default settings as shown below:
+After creating python environment, run the below listed commands to compute cell counts or sickling fraction from the experiment videos:
 
 ### Step 1
 ```bash
 python extract_frames.py --video /path/to/video.mp4
 ```
-More info on extract_frames.py can be find here: [extract_frames.md](extract_frames.md)
+More info on extract_frames.py can be found here: [extract_frames.md](extract_frames.md)
 
 
 ### Step 2
 ```bash
 python nnunet_infer.py
 ```
-More info on extract_frames.py can be find here: [nnunet_infer.md](nnunet_infer.md)
+More info on extract_frames.py can be found here: [nnunet_infer.md](nnunet_infer.md)
 
 ### Step 3
 ```bash
 python count_and_visualize.py --watershed
 ```
-More info on extract_frames.py can be find here: [count_and_visualize.md](count_and_visualize.md)
+More info on extract_frames.py can be found here: [count_and_visualize.md](count_and_visualize.md)
 
 ### Note: 
 #### Set required paths (run once per fresh session)
@@ -83,4 +83,4 @@ source scripts/set_paths.sh
 ```
 
 #### Customize weights
-If you choose to retrain nnU-Net on your own data, then place the weights in the path "nnunet_data/nnUNet_results/". You can continue using fully automated pipeline now as it is with the new weights!
+If you choose to retrain nnU-Net on your own data, then place the weights in the path "nnunet_data/nnUNet_results/". You can continue using fully automated pipeline now as it is with the new weights.
