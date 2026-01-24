@@ -89,4 +89,4 @@ source scripts/set_paths.sh
 ```
 
 #### Customize weights
-If you have choose to retrain nnUNet on your own data, then place the weights in the path "nnunet_data/nnUNet_results/". Thats it! You can continue using fully automated pipeline now as it is with the new weights!
+If you choose to retrain nnUNet on your own data, then place the weights in the path "nnunet_data/nnUNet_results/". Thats it! You can continue using fully automated pipeline now as it is with the new weights!
