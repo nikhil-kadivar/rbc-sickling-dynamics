@@ -43,7 +43,7 @@ You are now ready to run the full pipeline.
 
 ## Usage
 
-In default mode, to simply run this tool with the pretrained weights, run these three files as shown below.
+To run this tool with the pretrained weights, simply run these three files as shown below.
 
 1) `extract_frames.py` → creates `Task{ID}_{NAME}/imagesTs/…`
 2) **`nnunet_infer.py`** → runs `nnUNetv2_predict` on `imagesTs/`
