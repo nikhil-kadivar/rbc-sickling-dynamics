@@ -28,7 +28,7 @@ pip install "torch==2.2.2" --index-url https://download.pytorch.org/whl/cu121
 pip install -r requirements-gpu.txt
 ```
 
-### 4. Set the environment paths.
+### 4. Set the environment paths
 ```bash
 # From the repository root
 source scripts/set_paths.sh
@@ -41,11 +41,9 @@ python scripts/download_checkpoint.py
 
 You are now ready to run the full pipeline.
 
-
-
 ## Usage
 
-In default mode. To simply run this tool with the pretrained weights, you need to run these three files as shown below.
+In default mode, to simply run this tool with the pretrained weights, run these three files as shown below.
 
 1) `extract_frames.py` → creates `Task{ID}_{NAME}/imagesTs/…`
 2) **`nnunet_infer.py`** → runs `nnUNetv2_predict` on `imagesTs/`
@@ -53,7 +51,7 @@ In default mode. To simply run this tool with the pretrained weights, you need t
 
 ---
 
-After creating python environment as suggested in installation step. You can use command line argument to run with default settings is shown below:
+After creating python environment as suggested in installation step, use command line argument to run with default settings is shown below:
 
 
 
