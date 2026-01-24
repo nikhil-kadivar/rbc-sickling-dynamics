@@ -51,9 +51,7 @@ In default mode, to simply run this tool with the pretrained weights, run these 
 
 ---
 
-After creating python environment as suggested in installation step, use command line argument to run with default settings is shown below:
-
-
+After creating python environment as suggested in installation step, use command line argument to run with default settings as shown below:
 
 ### Step 1
 ```bash
