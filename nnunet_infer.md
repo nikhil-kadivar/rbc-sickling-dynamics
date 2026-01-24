@@ -15,7 +15,7 @@ Run **nnU-Net v2** inference on your extracted frames in **`imagesTs`** format a
 python nnunet_infer.py \
   --imagesTs Frames_for_inference/Task101_Experiment1/imagesTs/ \
   --out-dir nnunet_masks_out \
-  --nn_trained_dataset-id 102 \
+  --nn_trained_dataset-id 101 \
   --device cuda --gpus 0 \
   --npp 3 --nps 3 \
   --enable-progress-bar
@@ -25,7 +25,7 @@ python nnunet_infer.py \
 python nnunet_infer.py \
   --imagesTs Frames_for_inference/Task101_Experiment1/imagesTs/ \
   --out-dir nnunet_masks_out \
-  --nn_trained_dataset-id 102 \
+  --nn_trained_dataset-id 101 \
   --device cuda --gpus 0,1,2 \
   --parts 3 \
   --npp 3 --nps 3
@@ -45,9 +45,9 @@ Output directory for predictions (per-frame masks).
 
 #### Model & runtime
 
-- ```--nn_trained_dataset-id``` INT (default: 102)
-nnU-Net dataset ID used during training (e.g., 102).
-Note: This is not the same as the Task ID you used in extract_frames.py. For the pretrained weights in this repo, use 102.
+- ```--nn_trained_dataset-id``` INT (default: 101)
+nnU-Net dataset ID used during training (e.g., 101).
+Note: This is not the same as the Task ID you used in extract_frames.py. For the pretrained weights in this repo, use 101.
 
 - ```--checkpoint``` STR (default: checkpoint_best.pth)
 Checkpoint name or path from nnU-Net training.This is only required if you train the nnunet on your dataset. For pretrained weights, default option is best!
