@@ -78,7 +78,7 @@ python count_and_visualize.py --watershed
 ```
 more info on extract_frames.py can be find here: [count_and_visualize.md](count_and_visualize.md)
 
-## Note: Set required paths (run once per fresh session)
+### Note: Set required paths (run once per fresh session)
 
 This project relies on environment variables. After starting a fresh session (e.g., a new login, restarted shell, or new compute job), you may need to run:
 
@@ -86,5 +86,5 @@ This project relies on environment variables. After starting a fresh session (e.
 # From the repository root
 source scripts/set_paths.sh
 
-## Note
+
 If you have choose to retrain nnUNet on your custom data, then place the wieghts in the path "nnunet_data/nnUNet_results/". Thats it! You can continue using fully automated pipeline now as it is with the new weights!
