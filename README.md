@@ -51,7 +51,7 @@ In default mode. To simply run this tool with the pretrained weights, you need t
 
 1) `extract_frames.py` → creates `Task{ID}_{NAME}/imagesTs/…`
 2) **`nnunet_infer.py`** → runs `nnUNetv2_predict` on `imagesTs/`
-3) `sicklecell_count_and_visualize.py` → counts cells, makes plots & a montage video
+3) `count_and_visualize.py` → counts cells, makes plots & a montage video
 
 ---
 
